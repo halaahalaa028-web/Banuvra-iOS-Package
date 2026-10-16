@@ -1,3 +1,4 @@
+
 workflows:
   banuvra-ios:
     name: Banuvra BMS iOS
@@ -16,8 +17,11 @@ workflows:
       - name: Apply signing profiles
         script: |
           xcode-project use-profiles
-      - name: Build iOS archive
+      - name: Build IPA
         script: |
-          xcodebuild -project "ios/App/App.xcodeproj" -scheme "App" -configuration Release -sdk iphoneos -archivePath "$CM_BUILD_DIR/BanuvraBMS.xcarchive" archive
+          xcode-project build-ipa \
+            --project "ios/App/App.xcodeproj" \
+            --scheme "App"
     artifacts:
-      - $CM_BUILD_DIR/BanuvraBMS.xcarchive
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
