@@ -2,26 +2,39 @@
 workflows:
   banuvra-ios:
     name: Banuvra BMS iOS
+
+    integrations:
+      app_store_connect: Banuvra-iOS-Package
+
     environment:
       xcode: latest
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.banuvra.bms
+
     scripts:
       - name: Install dependencies
         script: |
           npm ci
+
       - name: Sync Capacitor
         script: |
           npx cap sync ios
+
       - name: Apply signing profiles
         script: |
           xcode-project use-profiles
+
       - name: Build IPA
         script: |
           xcode-project build-ipa \
             --project "ios/App/App.xcodeproj" \
             --scheme "App"
+
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+
+    publishing:
+      app_store_connect:
+        auth: integration
