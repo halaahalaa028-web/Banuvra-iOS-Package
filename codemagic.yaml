@@ -1,0 +1,36 @@
+
+workflows:
+  banuvra-ios:
+    name: Banuvra BMS iOS
+
+    environment:
+      xcode: latest
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.banuvra.bms
+
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm ci
+
+      - name: Sync Capacitor
+        script: |
+          npx cap sync ios
+
+      - name: Apply signing profiles
+        script: |
+          xcode-project use-profiles
+
+      - name: Build iOS archive
+        script: |
+          xcodebuild \
+            -workspace "ios/App/App.xcworkspace" \
+            -scheme "App" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath "$CM_BUILD_DIR/BanuvraBMS.xcarchive" \
+            archive
+
+    artifacts:
+      - $CM_BUILD_DIR/BanuvraBMS.xcarchive
