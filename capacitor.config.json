@@ -1,0 +1,49 @@
+{
+  "appId": "com.banuvra.bms",
+  "appName": "Banuvra BMS",
+  "webDir": "mobile/www",
+  "server": {
+    "url": "https://bms.banuvra.com/auth",
+    "androidScheme": "https",
+    "errorPath": "offline.html"
+  },
+  "android": {
+    "appendUserAgent": "BanuvraApp"
+  },
+  "ios": {
+    "appendUserAgent": "BanuvraApp",
+    "contentInset": "always",
+    "backgroundColor": "#092220"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#092220",
+      "showSpinner": false
+    },
+    "SystemBars": {
+      "style": "DARK"
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#092220",
+      "overlaysWebView": false
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
+    }
+  },
+  "packageClassList": [
+    "AppPlugin",
+    "CapacitorBarcodeScannerPlugin",
+    "HapticsPlugin",
+    "PushNotificationsPlugin",
+    "SplashScreenPlugin",
+    "StatusBarPlugin",
+    "NativeBiometricPlugin"
+  ]
+}

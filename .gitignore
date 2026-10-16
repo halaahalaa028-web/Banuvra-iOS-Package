@@ -1,0 +1,10 @@
+﻿node_modules/
+.env
+.env.*
+!.env.example
+**/*.p12
+**/*.p8
+**/*.mobileprovision
+**/*.cer
+**/*.key
+**/AuthKey_*.p8
